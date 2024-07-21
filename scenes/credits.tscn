@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnro2ica0kxtp"]
+
+[ext_resource type="FontFile" uid="uid://c3r2svfygh8wd" path="res://assets/font/PublicPixel-E447g.ttf" id="1_6fkif"]
+[ext_resource type="Texture2D" uid="uid://bneyudf214k27" path="res://assets/graphics/creditsbackground.png" id="1_nnjs0"]
+
+[node name="Credits" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_nnjs0")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 22.0
+offset_right = 135.0
+offset_bottom = 164.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_6fkif")
+theme_override_font_sizes/font_size = 18
+text = "CREDITS:
+
+Barneyo
+
+SPECIAL THANKS:
+H0nney, LeD,
+CyberPotato"

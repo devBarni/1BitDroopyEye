@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwxlr7m1i03lu"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_4ufhg"]
+[ext_resource type="Texture2D" uid="uid://bwtqtxqck4b64" path="res://assets/graphics/background-day.png" id="1_6uwd2"]
+[ext_resource type="PackedScene" uid="uid://dsqyq7lo66xo6" path="res://scenes/bird.tscn" id="1_70g86"]
+[ext_resource type="Script" path="res://scenes/ParallaxBackground.gd" id="2_kbje6"]
+[ext_resource type="PackedScene" uid="uid://bvj1w6kus0e47" path="res://scenes/ground.tscn" id="3_e0aod"]
+[ext_resource type="PackedScene" uid="uid://61iqstmxtub1" path="res://scenes/pipe_spawner.tscn" id="4_eghf4"]
+[ext_resource type="PackedScene" uid="uid://d100752js51cb" path="res://scenes/fade.tscn" id="6_mjcby"]
+[ext_resource type="PackedScene" uid="uid://dtb3hajc3rg1e" path="res://scenes/ui.tscn" id="7_ecdte"]
+[ext_resource type="PackedScene" uid="uid://drva0h30mmdf1" path="res://scenes/highscore.tscn" id="8_o86qt"]
+[ext_resource type="Texture2D" uid="uid://cj8pbp3a4vi8t" path="res://assets/graphics/clouds.png" id="9_oog17"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tseiw"]
+
+[node name="main" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_4ufhg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-144, -256)
+scale = Vector2(289, 512.252)
+texture_normal = SubResource("CanvasTexture_tseiw")
+action = "Jump"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_kbje6")
+
+[node name="ParallaxLayerBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(576, 0)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerBackground"]
+texture_filter = 1
+texture = ExtResource("1_6uwd2")
+
+[node name="ParallaxLayerBackground2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(576, 0)
+
+[node name="Background2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerBackground2"]
+texture_filter = 1
+position = Vector2(288, 0)
+texture = ExtResource("1_6uwd2")
+
+[node name="ParallaxLayerClouds2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Clouds" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerClouds2"]
+texture_filter = 1
+position = Vector2(144, -256)
+scale = Vector2(0.999999, 1)
+texture = ExtResource("9_oog17")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Clouds2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(-144, -256)
+scale = Vector2(0.999999, 1)
+texture = ExtResource("9_oog17")
+centered = false
+
+[node name="Ground" parent="." instance=ExtResource("3_e0aod")]
+position = Vector2(24, 200)
+
+[node name="PipeSpawner" parent="." node_paths=PackedStringArray("bird") instance=ExtResource("4_eghf4")]
+bird = NodePath("../Bird")
+
+[node name="Bird" parent="." instance=ExtResource("1_70g86")]
+
+[node name="Fade" parent="." instance=ExtResource("6_mjcby")]
+
+[node name="UI" parent="." instance=ExtResource("7_ecdte")]
+
+[node name="Highscore" parent="." instance=ExtResource("8_o86qt")]

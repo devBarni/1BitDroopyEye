@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjnyik00v5j2x"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_im8ku"]
+[ext_resource type="AudioStream" uid="uid://xt0e0a6phw35" path="res://assets/sounds/powerUp.wav" id="2_ngsws"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwhem"]
+
+[sub_resource type="Curve" id="Curve_s3blf"]
+_data = [Vector2(0.0449438, 0.736264), 0.0, 0.0, 0, 0, Vector2(0.297753, 0.406593), 0.0, 0.0, 0, 0, Vector2(0.533708, 0.10989), 0.0, 0.0, 0, 0, Vector2(0.848315, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="PowerUp" type="Area2D" groups=["PowerUp"]]
+script = ExtResource("1_im8ku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nwhem")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 64
+emission_shape = 1
+emission_sphere_radius = 12.0
+gravity = Vector2(0, -40)
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_s3blf")
+
+[node name="powerupy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ngsws")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

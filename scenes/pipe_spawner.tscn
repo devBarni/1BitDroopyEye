@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://61iqstmxtub1"]
+
+[ext_resource type="Script" path="res://scripts/pipe_spawner.gd" id="1_rgxg5"]
+[ext_resource type="AudioStream" uid="uid://b3huigk4jqkko" path="res://assets/sounds/pickupcoin.wav" id="2_5gwjb"]
+
+[node name="PipeSpawner" type="Node"]
+script = ExtResource("1_rgxg5")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="pointsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5gwjb")

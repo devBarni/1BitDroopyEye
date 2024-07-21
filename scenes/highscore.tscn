@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://drva0h30mmdf1"]
+
+[node name="Highscore" type="Node2D"]
